@@ -9,7 +9,7 @@ const mealRoute = require('./routes/mealRoute');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware
@@ -32,7 +32,5 @@ app.use('/api/empMasterAndRate', empMasterAndRateRoutes);
 app.use('/api/mealForm', mealFormRoutes);
 app.use('/api/', mealRoute);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the app to be used by Vercel
+module.exports = app; // Export the Express app to handle serverless requests
