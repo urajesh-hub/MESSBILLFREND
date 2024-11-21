@@ -3,7 +3,7 @@ const MealForm = require("../models/mealForm"); // Assuming you have the MealFor
 // Create Meal Entry
 
 exports.createMealForm = async (req, res) => {
-  const { empCode, empName, department,date, breakfast, lunch, dinner } = req.body;
+  const { empCode, empName, category,department,date, breakfast, lunch, dinner } = req.body;
 
   // Convert the date string into a JavaScript Date object (Format: dd-mm-yyyy -> yyyy-mm-dd)
   const dateObj = new Date(date);
@@ -30,6 +30,7 @@ exports.createMealForm = async (req, res) => {
     const newMeal = new MealForm({
       empCode,
       empName,
+      category,
       department,
       date: dateObj, // Store the date as a Date object
       breakfast,

@@ -2,13 +2,13 @@ const EmpMasterAndRate = require('../models/empMasterAndRate');
 
 // Create new employee
 exports.createEmpMasterAndRate = async (req, res) => {
-  const { empCode, empName, department, Joindate, breakfastRate, lunchRate, dinnerRate, status } = req.body;
+  const { empCode, empName,category, department, Joindate, breakfastRate, lunchRate, dinnerRate, status } = req.body;
 
   try {
     console.log('Incoming request:', req.body);
 
     // Validate required fields
-    if (!empCode || !empName || !department || !Joindate || !breakfastRate || !lunchRate || !dinnerRate || !status) {
+    if (!empCode || !empName || !category || !department || !Joindate || !breakfastRate || !lunchRate || !dinnerRate || !status) {
       return res.status(400).json({ message: 'All fields are required.' });
     }
 
@@ -22,6 +22,7 @@ exports.createEmpMasterAndRate = async (req, res) => {
     const newEmp = new EmpMasterAndRate({
       empCode,
       empName,
+      category,
       department,
       Joindate, // Save as-is (string format from frontend)
       breakfastRate,
@@ -78,13 +79,13 @@ exports.getAllEmps = async (req, res) => {
 // Update employee
 exports.updateEmp = async (req, res) => {
   const { empCode } = req.params;
-  const { empName, department, Joindate, breakfastRate, lunchRate, dinnerRate, status } = req.body;
+  const { empName, department,category, Joindate, breakfastRate, lunchRate, dinnerRate, status } = req.body;
 
   try {
     // Update employee (Joindate stored as received)
     const updatedEmp = await EmpMasterAndRate.findOneAndUpdate(
       { empCode },
-      { empName, department, Joindate, breakfastRate, lunchRate, dinnerRate, status, updatedAt: Date.now() },
+      { empName, department,category, Joindate, breakfastRate, lunchRate, dinnerRate, status, updatedAt: Date.now() },
       { new: true }
     );
 

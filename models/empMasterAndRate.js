@@ -4,6 +4,7 @@ const empMasterAndRateSchema = new mongoose.Schema(
   {
     empCode: { type: String, required: true, unique: true },
     empName: { type: String, required: true },
+    category:{type: String, required: true},
     department: { type: String, required: true },
     Joindate: { type: Date, required: true },
     breakfastRate: { type: Number, required: true },
