@@ -5,7 +5,7 @@ exports.createEmpMasterAndRate = async (req, res) => {
   const { empCode, empName,category, department, Joindate, breakfastRate, lunchRate, dinnerRate, status } = req.body;
 
   try {
-    console.log('Incoming request:', req.body);
+   
 
     // Validate required fields
     if (!empCode || !empName || !category || !department || !Joindate || !breakfastRate || !lunchRate || !dinnerRate || !status) {
